@@ -4,13 +4,14 @@ import helmet from "helmet";
 import morgan from "morgan";
 import bodyParser from "body-parser";
 import cors from "cors";
-import 'express-async-errors';
+import "express-async-errors";
 
 // Config
 import Config from "./config/config.js";
 
 // Middlewares
-import middlewares from "./api/middlewares/Middlewares.js";
+import notFoundMiddleware from "./api/middlewares/not-found.js";
+import errorHandlerMiddleware from "./api/middlewares/error-handler.js";
 
 // router
 import { router } from "./api/routes/router.js";
@@ -29,8 +30,8 @@ app.use(morgan("common"));
 app.use("/api/v1", router);
 
 // middlewares
-app.use(middlewares.notFound);
-app.use(middlewares.errorHandler);
+app.use(notFoundMiddleware);
+app.use(errorHandlerMiddleware);
 
 const start = () => {
   try {
