@@ -1,4 +1,5 @@
 import express from "express";
+import { todoRouter } from "./todo/todo.routes.js";
 
 // routers
 
@@ -6,6 +7,4 @@ import express from "express";
 export const router = express.Router();
 
 // routes
-router.get("/", (req, res) => {
-  res.send("Todo app mern server");
-});
+router.use("/todo", todoRouter);
