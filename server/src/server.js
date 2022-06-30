@@ -4,6 +4,7 @@ import helmet from "helmet";
 import morgan from "morgan";
 import bodyParser from "body-parser";
 import cors from "cors";
+import 'express-async-errors';
 
 // Config
 import Config from "./config/config.js";
