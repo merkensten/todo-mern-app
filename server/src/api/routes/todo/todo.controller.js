@@ -47,6 +47,36 @@ const updateTodo = async (req, res) => {
   }
 };
 
+const completeTodo = async (req, res) => {
+  try {
+    const todo = await Todo.findByIdAndUpdate(
+      req.params.todoId,
+      {
+        completed: true,
+      },
+      { new: true }
+    );
+    res.status(StatusCodes.OK).json(todo);
+  } catch (error) {
+    res.status(StatusCodes.INTERNAL_SERVER_ERROR).json({ error });
+  }
+};
+
+const archiveTodo = async (req, res) => {
+  try {
+    const todo = await Todo.findByIdAndUpdate(
+      req.params.todoId,
+      {
+        archived: true,
+      },
+      { new: true }
+    );
+    res.status(StatusCodes.OK).json(todo);
+  } catch (error) {
+    res.status(StatusCodes.INTERNAL_SERVER_ERROR).json({ error });
+  }
+};
+
 const deleteTodo = async (req, res) => {
   try {
     const todo = await Todo.findByIdAndDelete(req.params.todoId);
@@ -63,4 +93,12 @@ const deleteTodo = async (req, res) => {
   }
 };
 
-export { getAllTodos, createTodo, getTodo, updateTodo, deleteTodo };
+export {
+  getAllTodos,
+  createTodo,
+  getTodo,
+  updateTodo,
+  deleteTodo,
+  completeTodo,
+  archiveTodo,
+};
